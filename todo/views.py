@@ -27,7 +27,9 @@ def form(request,id=0):
             form.save()
         return redirect('/index/')
 
-def todo_del(request):
-    return 
+def todo_del(request,id):
+    user=Todo.objects.get(pk=id)
+    user.delete()
+    return redirect('/index/')
    
 

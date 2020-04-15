@@ -1,15 +1,25 @@
 {% extends 'base.html' %} {% block content %}
+<div class="col-md-4 mx-auto">
+    <a href="{% url 'todo_form' %}" class="btn btn-block btn-outline-primary mx-auto"> <i class="far fa-plus-square"></i> Create New </a>
+
+</div>
+<hr class="my-4">
 <div class="new">
     {% for formo in todo_list %}
     <h1> {{formo.title}}</h1>
     <p> {{formo.description}}</p>
     <a href="{% url 'todo_update' formo.id %}" class="btn"><i class="far fa-edit"></i> Edit</a>
+    <form action="{% url 'todo_delete' formo.id %}" method='post' class="d-inline">
+        {% csrf_token %}
+
+
+        <button type="submit" class="btn text-danger float-right">
+            <i class="fas fa-trash"></i> Delete
+        </button>
+    </form>
     <hr class="my-4"> {% endfor %}
 </div>
-<div>
-    <a href="{% url 'todo_form' %}" class="btn btn-success btn-block"> BACK </a>
 
-</div>
 
 </div>
 {% endblock content %}
