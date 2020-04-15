@@ -1,7 +1,12 @@
 {% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
 
-<form action="" method="post">
+<form action="" method="post" autocomplete="off">
     {% csrf_token %} {{form.title|as_crispy_field}} {{form.description|as_crispy_field}}
+    <button type="submit" class="btn btn-success btn-lg btn-block">
+        <i class="fas fa-list-ul"></i>   Create
+    </button>
+
 </form>
+
 
 {% endblock content %}

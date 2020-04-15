@@ -9,6 +9,13 @@ def index(request):
 
 
 def form(request):
-    form = Todoforms()
-    return render(request,"todo_form.html",{'form':form})
+    if request.method == "GET":
+        form = Todoforms()
+        return render(request,'todo_form.html',{'form':form})
+    else:
+        form = Todoforms(request.POST)
+        if form.is_valid:
+            form.save()
+        return redirect('/index/')
+   
 
