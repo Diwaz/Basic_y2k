@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+<div class="new">
+    {% for formo in todo_list %}
+    <h1>Title: {{formo.title}}</h1>
+    <p>Description: {{formo.description}}</p>
+    {% endfor %}
+</div>
+<div>
+    <a href="{% url 'todo_form' %}" class="btn btn-success btn-block"> BACK </a>
+
+</div>
+
+</div>
+{% endblock content %}

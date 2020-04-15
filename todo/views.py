@@ -5,7 +5,8 @@ from .models import Todo
 
 
 def index(request):
-    return render(request,"base.html")
+    context = {'todo_list':Todo.objects.all()}
+    return render(request,"todo_list.html",context)
 
 
 def form(request):
