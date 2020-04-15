@@ -1,9 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <div class="new">
     {% for formo in todo_list %}
-    <h1>Title: {{formo.title}}</h1>
-    <p>Description: {{formo.description}}</p>
-    {% endfor %}
+    <h1> {{formo.title}}</h1>
+    <p> {{formo.description}}</p>
+    <a href="{% url 'todo_update' formo.id %}" class="btn"><i class="far fa-edit"></i> Edit</a>
+    <hr class="my-4"> {% endfor %}
 </div>
 <div>
     <a href="{% url 'todo_form' %}" class="btn btn-success btn-block"> BACK </a>

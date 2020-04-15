@@ -9,14 +9,25 @@ def index(request):
     return render(request,"todo_list.html",context)
 
 
-def form(request):
+def form(request,id=0):
     if request.method == "GET":
-        form = Todoforms()
+        if id==0:
+            form = Todoforms()
+        else:
+            user=Todo.objects.get(pk=id)
+            form=Todoforms(instance=user)
         return render(request,'todo_form.html',{'form':form})
     else:
-        form = Todoforms(request.POST)
+        if id==0:
+            form = Todoforms(request.POST)
+        else:
+            user=Todo.objects.get(pk=id)
+            form=Todoforms(request.POST,instance=user)
         if form.is_valid:
             form.save()
         return redirect('/index/')
+
+def todo_del(request):
+    return 
    
 
