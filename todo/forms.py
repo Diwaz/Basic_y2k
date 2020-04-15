@@ -1,9 +1,14 @@
 from django import forms
-from . import models
+from .models import Todo
 
-class Todo(forms.ModelForm):
+class Todoforms(forms.ModelForm):
     
     class Meta:
         model = Todo
-        fields = ("__all__",)
+        fields = ("__all__")
+        labels  = {
+            'title': 'Title',
+            'description': 'Description'
+
+        }
 
