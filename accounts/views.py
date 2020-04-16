@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.models import User,auth
 
 def register(request):
@@ -10,10 +10,20 @@ def register(request):
         pass1 = request.POST['password1']
         pass2 = request.POST['password2']
 
-        user=User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=pass1, email=email)
-        user.save()
-        print('User Created')
-        return render(request,'todo_list.html')
+        if pass1==pass2:
+            if User.objects.filter(username=username).exists():
+                print("Username Exist")
+            elif User.objects.filter(email=email).exists():
+                print("Email Exists")
+            else:
+                user=User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=pass1, email=email)
+                user.save()
+                print('User Created')
+                
+        else:
+            print("Password Not matched")
+            return HttpResponse("Password Not matched")
+        return redirect('/accounts/')
        
     else:
          return render(request,'register.html')
