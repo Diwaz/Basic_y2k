@@ -18,8 +18,11 @@
             <div class="jumbotron">
                 <h1 class="display-4">Todo-List</h1>
                 <p class="lead">Hello, Welcome to the Todo Web App created by Diwas as the first project of django series to learn the basic of django-framework</p>
-
-                {% block content %} {% endblock content %}
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn float-right btn-danger"> Logout</a>
+                <button class="btn btn-success" disabled> Welcome Mr.{{user.first_name}} </button> {% else %}
+                <a href="{% url 'register' %}" class="btn float-right btn-success"> Register</a>
+                <a href="{% url 'login' %}" class="btn  btn-danger"> Login</a> {% endif %} {% block content %} {% endblock content %}
 
             </div>
         </div>
